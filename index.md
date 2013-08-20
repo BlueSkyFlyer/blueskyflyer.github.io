@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Jack Collins
+tagline: Aspiring Ruby on Rails Developer
 ---
 {% include JB/setup %}
 
