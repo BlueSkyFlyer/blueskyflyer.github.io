@@ -58,25 +58,25 @@ Now that we have instance variables to use, we can put them to work. You can see
 
 {% highlight ruby %}
 
-  #Player Turn
+#Player Turn
 
-  <% if @show_hit_or_stay_buttons %>
-  <p>
-    <%= session[:player_name] %> has <%= calculate_total(session[:player_cards]) %>
-  </p>
+<% if @show_hit_or_stay_buttons %>
+<p>
+  <%= session[:player_name] %> has <%= calculate_total(session[:player_cards]) %>
+</p>
 
-  <p>
-    What would <%= session[:player_name] %> like to do?
-  </p>
-  <p>
-  	<form id="hit_form" action="/game/player/hit" method='post'>
-  		<input type="submit" class="btn btn-success" value="Hit"/>
-  	</form>
-  	<form id="stay_form" action="/game/player/stay" method='post'>
-  		<input type="submit" class="btn btn-warning" value="Stay"/>
-  	</form>
-  </p>
-  <% end %>
+<p>
+  What would <%= session[:player_name] %> like to do?
+</p>
+<p>
+  <form id="hit_form" action="/game/player/hit" method='post'>
+    <input type="submit" class="btn btn-success" value="Hit"/>
+  </form>
+  <form id="stay_form" action="/game/player/stay" method='post'>
+    <input type="submit" class="btn btn-warning" value="Stay"/>
+  </form>
+</p>
+<% end %>
 
 {% endhighlight %}
 
@@ -85,8 +85,8 @@ Since the @show_hit_or_stay_buttons variable is true, we show the player's total
 {% highlight ruby %}
 
 post '/game/player/stay' do
-	@success = "#{session[:player_name]} has chosen to stay."
-	@show_hit_or_stay_buttons = false
+  @success = "#{session[:player_name]} has chosen to stay."
+  @show_hit_or_stay_buttons = false
   redirect '/game/dealer'
 end
 
