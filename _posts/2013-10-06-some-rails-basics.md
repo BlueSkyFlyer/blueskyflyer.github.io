@@ -23,7 +23,7 @@ As part of our first week we've been given a 15 question quiz on some Rails and 
 		  has_many :posts
 		end
 
-		{% end %}
+		{% endhighlight %}
 
 		{% highlight ruby %}
 
@@ -31,7 +31,7 @@ As part of our first week we've been given a 15 question quiz on some Rails and 
 		  belongs_to :user
 		end
 
-		{% end %}
+		{% endhighlight %}
 
 2. What is SQL?
 
@@ -42,18 +42,59 @@ As part of our first week we've been given a 15 question quiz on some Rails and 
     - The two types of views are read-only and updateable. The primary difference is whether or not the database system can perform reverse mapping between the view and database schema. If it can, then it is updateable. Otherwise, the view is read-only.
 
 4. In a table, what do we call the column that serves as the main identifier for a row of data? We're looking for the general database term, not the column name.
+
+    - The column that serves as the main identifier for a row of data is the "primary key". See the example in question 1 for clarification.
+
 5. What is a foreign key, and how is it used?
+
+    - A foreign key is a column within one table that can identify one or more pieces of information in another table. In the Users and Posts example above, the foreign key of the "posts" table was the "user_id" column. The value in the "user_id" column corresponds to the primary key (the "id" column) of a single user in the "users" table.
+
 6. At a high level, describe the ActiveRecord pattern. This has nothing to do with Rails, but the actual pattern that ActiveRecord uses to perform its ORM duties.
+
+    - In general, the Active Record refers to the way that data is accessed from within a database. Each table or "view" corresponds to a class (in rails, it's a model). Therefore, a new instance of an object from that class is tied to a row in the table and a new row is created every time a new object is saved. Objects can also be updated or deleted. The properties or accessor methods for each column are defined in the wrapper class (model).
+
 7. If there's an ActiveRecord model called "CrazyMonkey", what should the table name be?
+
+    - crazy_monkeys
+
 8. If I'm building a 1:M association between Project and Issue, what will the model associations and foreign key be?
+
+    - Project model:
+        * has_many :issues
+    - Issue model:
+        * belongs_to :project
+    - The foreign key will be in the issues table and titled "project_id"
+
 9. Given this code
+{% highlight ruby %}
 class Zoo
   has_many :animals
 end
+{% endhighlight %}
     - What do you expect the other model to be and what does database schema look like?
+        * The other model would likely be titled "Animal". The database would include columns "species", "age", "name" and certainly "zoo_id"
     - What are the methods that are now available to a zoo to call related to animals?
+        * You could call methods specific to an animal through the relationship like zoo.animals.find(:age >="5"). You could also iterate through each animal and list its species with 
+        {% highlight ruby %}
+          <ul>
+          	<% zoo.animals.each do |animal| %>
+          	<li>
+          		<%= animal.name %>
+          	</li>
+          	<% end %>
+          </ul>
+        {% endhighlight %}
     - How do I create an animal called "jumpster" in a zoo called "San Diego Zoo"?
+        * First you would need the zoo_id of San Diego Zoo. Let's say it is 4.
+        * jumpster = Animal.create(name: "Jumpster", zoo_id: "4")
 10. What is mass assignment? What's the non-mass assignment way of setting values?
+
+    - Mass assignment is the process of assigning values to multiple variables in one command. A perfect example is in the previous question where I assigned the name and zoo_id to Jumpster in one command. The non-mass assignment way of setting values is to assign values one-per-command.
+        * jumpster = Animal.new
+        * jumpster.name = "Jumpster"
+        * jumpster.zoo_id = "4"
+        * jumpster.save
+
 11. What does this code do? Animal.first
 12. If I have a table called "animals" with columns called "name", and a model called Animal, how do I instantiate an animal object with name set to "Joe". Which methods makes sure it saves to the database?
 13. How does a M:M association work at the database level?
