@@ -35,7 +35,7 @@ puppy.warm_blooded?
 
 {% endhighlight %}
 
-This code will return {% highlight ruby %} true {% endhighlight %} because puppy, the Dog object, <strong>inherits</strong> the .warm_blooded? method from the Mammal parent class. This is a good way of organizing methods if you are <strong>100% sure</strong> that your Child objects should inherit every method from the parent object. Many programmers shy away from Inheritance for the more versatile Composition style of organization. 
+This code will return true because puppy, the Dog object, <strong>inherits</strong> the .warm_blooded? method from the Mammal parent class. This is a good way of organizing methods if you are <strong>100% sure</strong> that your Child objects should inherit every method from the parent object. Many programmers shy away from Inheritance for the more versatile Composition style of organization. 
 
 ##Composition
 
