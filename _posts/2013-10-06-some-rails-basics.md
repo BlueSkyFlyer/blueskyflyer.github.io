@@ -101,10 +101,44 @@ Mass assignment is the process of assigning values to multiple variables in one 
 
 **What does this code do? Animal.first**
 
+Animal.first will retrieve the first row of data from the "animals" table.
+
 **If I have a table called "animals" with columns called "name", and a model called Animal, how do I instantiate an animal object with name set to "Joe". Which methods makes sure it saves to the database?**
+
+You could do this a few different ways. The most straightforward way would involve mass assignment.
+
+Joe = Animal.create(name: "Joe")
+
+Animal.create will hit the database right away whereas Animal.new would only save the new object in memory and you would have to call Joe.save to hit the database.
 
 **How does a M:M association work at the database level?**
 
+A many-to-many table works through a join table to associate objects that might have multiple related instances of each other. For example, in a blog you might have a many posts and each post could belong to many different categories. So, you would have a "posts" table and a "categories" table. To associate the two with a M:M relationship you would need a "join table" titled post_categories with at least two columns: "post_id" and "category_id". Rails expects this syntax of "_id" added to the end of the columns. After you set up the model, the database would join the posts and categories through the post_categories table. Each post has an "id" which would be identified in the join table in the "post_id" column. The foreign_key for the category would be stored in the "category_id" column.
+
 **What are the two ways to support a M:M association at the ActiveRecord model level? Pros and cons of each approach?**
 
+The two ways are has_many :through and has_and_belongs_to_many. The has_many :through is usually the better choice for a number of reasons.
+
+has_many :through
+
+    Pros: This option is much more flexible if you need to modify the relationship or add columns to the join table.
+
+    Cons: Slightly more complicated and you need to build the join table manually.
+
+has_and_belongs_to_many
+
+    Pros: Very easy to set up because you only need to include "has_and_belongs_to_many" in both models.
+
+    Cons: You can't easily modify the relationship or add columns to the join table - because there isn't one!
+
 **Suppose we have a User model and a Group model, and we have a M:M association all set up. How do we associate the two?**
+
+I would build a join table called user_groups that had columns "user_id" and "group_id". In the User model I would include 
+
+    has_many :user_groups
+    has_many :groups, through: :user_groups
+
+In the Group model I would include:
+
+    has_many :user_groups
+    has_many :users, through: :user_groups
