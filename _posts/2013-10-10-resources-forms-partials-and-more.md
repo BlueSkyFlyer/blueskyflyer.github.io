@@ -42,7 +42,7 @@ The major difference is that model backed form helpers are tied to an object. Th
 <%= f.text_field :title %>
 {% endhighlight %}
 
-Non-model backed forms include tags which generate HTML. They all have _tag appended to them:
+Non-model backed forms include tags which generate HTML. 
 
 {% highlight ruby %}
 
