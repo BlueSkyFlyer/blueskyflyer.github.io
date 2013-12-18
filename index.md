@@ -8,9 +8,9 @@ tagline: Aspiring Ruby on Rails Developer
 ## Recent Posts
 
 
-<ul>
+<ul class="post-list">
   {% for post in site.posts %}
-    <li><a style="font-size:30px" href="{{ post.url }}">{{ post.title }}     </a><span style="font-size:16px">{{ post.date | date_to_string }}</span>
+    <li class="post-preview"><a class="post-title" href="{{ post.url }}">{{ post.title }}     </a><span class="post-date">{{ post.date | date_to_string }}</span>
       {% if post.content contains '<!--more-->' %}
         {{ post.content | split:'<!--more-->' | first }}
       {% endif %}
