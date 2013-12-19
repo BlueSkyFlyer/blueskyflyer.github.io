@@ -1,7 +1,11 @@
 body {
-  background: #ccc url("/img/grey_wash_wall.png");
+  background: #ccc url("/img/fabric.png");
   background-attachment: fixed;
 }
+
+/* New Color Scheme */
+
+/* Custom Post Formatting */
 
 .post-preview {
   padding: 0;
@@ -17,7 +21,7 @@ body {
 
 .post-title {
   font-size: 30px;
-  color: #838B8B;
+  color: #DE8642;
 }
 
 .post-title:hover {
