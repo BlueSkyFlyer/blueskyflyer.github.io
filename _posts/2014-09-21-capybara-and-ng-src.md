@@ -7,7 +7,7 @@ tags: []
 ---
 {% include JB/setup %}
 
-I've been setting up some integration specs with Capybara for my most recent AngularJS project and I was running into some problems with image requests. The problem turned out to be a difference in how you requent images in Angular versus other frameworks. ngSrc to the rescue!
+I've been setting up some integration specs with Capybara for my most recent AngularJS project and I was running into some problems with image requests. The problem turned out to be a difference in how you request images in Angular versus other frameworks. ngSrc to the rescue!
 
 <!--more-->
 
@@ -36,12 +36,12 @@ That is all fine and good, and whenever I needed an image I would return it from
 	.text-center
 		%span
 			%p This week's pick:
-			%img{"src" => "{{pool_entry.nfl_team.logo_url_small}}" }
-			%h4 {{pool_entry.nfl_team.nfl_team_name}}
+			%img{"src" => "\{\{pool_entry.nfl_team.logo_url_small\}\}" }
+			%h4 \{\{pool_entry.nfl_team.nfl_team_name\}\}
 
 {% endhighlight %}
 
-The "src" is the problematic part here. The browser first will try to fetch the image from the literal URL with the "{{}}" before Anuglar comes and replaces the expression inside the hash. This is solved by using "ng-src" since the browser won't try to fetch that image:
+The "src" is the problematic part here. The browser first will try to fetch the image from the literal URL with the "\{\{\}\}" before Anuglar comes and replaces the expression inside the hash. This is solved by using "ng-src" since the browser won't try to fetch that image:
 
 {% highlight coffeescript %}
 
@@ -49,8 +49,8 @@ The "src" is the problematic part here. The browser first will try to fetch the 
 	.text-center
 		%span
 			%p This week's pick:
-			%img{"ng-src" => "{{pool_entry.nfl_team.logo_url_small}}" }
-			%h4 {{pool_entry.nfl_team.nfl_team_name}}
+			%img{"ng-src" => "\{\{pool_entry.nfl_team.logo_url_small\}\}" }
+			%h4 \{\{pool_entry.nfl_team.nfl_team_name\}\}
 
 {% endhighlight %}
 
