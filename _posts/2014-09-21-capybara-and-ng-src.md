@@ -36,8 +36,8 @@ That is all fine and good, and whenever I needed an image I would return it from
 	.text-center
 		%span
 			%p This week's pick:
-			%img{"src" => "\{\{pool_entry.nfl_team.logo_url_small\}\}" }
-			%h4 \{\{pool_entry.nfl_team.nfl_team_name\}\}
+			%img{"src" => "\{{pool_entry.nfl_team.logo_url_small}}" }
+			%h4 \{{pool_entry.nfl_team.nfl_team_name}}
 
 {% endhighlight %}
 
@@ -49,8 +49,8 @@ The "src" is the problematic part here. The browser first will try to fetch the 
 	.text-center
 		%span
 			%p This week's pick:
-			%img{"ng-src" => "\{\{pool_entry.nfl_team.logo_url_small\}\}" }
-			%h4 \{\{pool_entry.nfl_team.nfl_team_name\}\}
+			%img{"ng-src" => "\{{pool_entry.nfl_team.logo_url_small}}" }
+			%h4 \{{pool_entry.nfl_team.nfl_team_name}}
 
 {% endhighlight %}
 
